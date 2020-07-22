@@ -9,6 +9,15 @@ Problem: Create an Automated Web Deployment setup with the integration of GitHub
 
 ##Solution:
 
+##Prerequisite:
+
+-Basic linux
+-Git and Github
+-Jenkins
+-php/html
+
+so here we start :
+
 1.First of all, create a git repository in GitHub that will contain all the codes and webpages for the website.
 
 ![git](/Home_Assignment/309.png)
