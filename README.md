@@ -10,24 +10,24 @@ Problem: Create an Automated Web Deployment setup with the integration of GitHub
 1.First of all, create a git repository in GitHub that will contain all the codes and webpages for the website.
 
 
-!.[git repo ].(/snapshot/Screenshot (309).png)
+![git repo ](/snapshot/Screenshot (309).png)
 
 ## Jenkins Jobs:
 ## JOB 1:
 This job will deploy the website to the main web server. For the we need to integrate our GitHub repository to this job of Jenkins.
 
 
-!.[job1].(/snapshot/Screenshot (310).png)
+![job1](/snapshot/Screenshot (310).png)
 
 Under source code management copy the URL of GitHub repository in Repositories section.
 
-!.[job1].(/snapshot/Screenshot (311).png)
+![job1](/snapshot/Screenshot (311).png)
 
 Select the branch Master.
 
 Now, under Build Triggers section select Poll SCM.
 
-!.[job1].(/snapshot/Screenshot (312).png)
+![job1](/snapshot/Screenshot (312).png)
 
 Now under the Execute Shell of Buil section write the following code which will launch the httpd container after checking it's pre-existing or not.
 
@@ -45,38 +45,38 @@ Now under the Execute Shell of Buil section write the following code which will 
 
 # fi
 
-!.[job1].(/snapshot/Screenshot (313).png)
+![job1](/snapshot/Screenshot (313).png)
 
 ## JOB 2:
 This will send the code to the Test team for testing.
 
-!.[job2].(/snapshot/Screenshot (314).png)
+![job2](/snapshot/Screenshot (314).png)
 
-!.[job2].(/snapshot/Screenshot (315).png)
+![job2](/snapshot/Screenshot (315).png)
 
-!.[job2].(/snapshot/Screenshot (316).png)
+![job2](/snapshot/Screenshot (316).png)
 
-!.[job2].(/snapshot/Screenshot (317).png)
+![job2](/snapshot/Screenshot (317).png)
 
-!.[job2].(/snapshot/Screenshot (327).png)
+![job2](/snapshot/Screenshot (327).png)
 
 
 ## JOB 3:
 This job will execute after the successful completion of job 2 and deploy the new code and webpages after the testing to the main web server which will publically available.
 
-!.[job3].(/snapshot/Screenshot (318).png)
+![job3](/snapshot/Screenshot (318).png)
 
-!.[job3].(/snapshot/Screenshot (319).png)
+![job3](/snapshot/Screenshot (319).png)
 
-!.[job3].(/snapshot/Screenshot (320).png)
+![job3](/snapshot/Screenshot (320).png)
 
-!.[job3].(/snapshot/Screenshot (326).png)
+![job3](/snapshot/Screenshot (326).png)
 
-!.[job3].(/snapshot/Screenshot (321).png)
+![job3](/snapshot/Screenshot (321).png)
 
-!.[job3].(/snapshot/Screenshot (322).png)
+![job3](/snapshot/Screenshot (322).png)
 
-!.[job3].(/snapshot/Screenshot (307).png)
+![job3](/snapshot/Screenshot (307).png)
 
 thanks for reading !
 this work is done under guidance of # vimal daga sir 
