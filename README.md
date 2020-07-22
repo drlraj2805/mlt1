@@ -8,7 +8,7 @@ Problem: Create an Automated Web Deployment setup with the integration of GitHub
 ##Solution:
 
 1.First of all, create a git repository in GitHub that will contain all the codes and webpages for the website.
-
+![Mastercode config](/snapshot/Screenshot (307).png)
 ![task1]("/snapshot/Screenshot (307).png")
 
 ## Jenkins Jobs:
