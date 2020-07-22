@@ -2,12 +2,15 @@
 Problem: Create an Automated Web Deployment setup with the integration of GitHub, Docker & Jenkins.
 
 1.Create a git repository and create a Jenkins job which will fetch from the master branch after every update made to the branch.
+
 2.For the developers, create a developer branch and create a Jenkins job which will fetch from the developer branch of GitHub and launch a separate httpd container for the same.
+
 3.In this stage, Jenkins will approach the website running in testing environment and finally merge the dev and master branch after testing.
 
 ##Solution:
 
 1.First of all, create a git repository in GitHub that will contain all the codes and webpages for the website.
+
 ![task1](/snapshot/Screenshot (307).png)
 
 ## Jenkins Jobs:
