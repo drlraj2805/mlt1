@@ -5,116 +5,79 @@ Problem: Create an Automated Web Deployment setup with the integration of GitHub
 2.For the developers, create a developer branch and create a Jenkins job which will fetch from the developer branch of GitHub and launch a separate httpd container for the same.
 3.In this stage, Jenkins will approach the website running in testing environment and finally merge the dev and master branch after testing.
 
-Solution:
+##Solution:
 
 1.First of all, create a git repository in GitHub that will contain all the codes and webpages for the website.
-(/Task1t/1.png)
 
 
-![Webhook config](/Task1t/1.png)
 
-![Webhook config](/Task1t/2.png)
+![git repo ](/snapshot/Screenshot (309).png)
 
-Coming to  the automated Integration part, directories are created on the Base OS where the Docker containers are installed.
-The various required services are started ( i.e. Jenkins, Docker).
-
-## Creation of Jenkin jobs
-
-### First, we setup the first Job which is to copy the changes in the feature branch on Github.
-Changes are downloaded to Developercode project and a new test environment is set up using docker httpd image. 
-
-```
-NOTE : It is recommended to create a new testing environment
-```
-
-![Developercode config](/Task1t/3.png)
-
-![Developercode config](/Task1t/4.png)
-
-![Developercode config](/Task1t/5.png)
-
-```
-
-* To copy all the files to test folder linked/mounted to the testing environment:
-
-sudo cp -rvf * /developerchanges
-
-* To remove old test environment (if any) :
-
-if sudo docker ps -a | grep testingenv
-then
-sudo docker rm -f testingenv
-else
-echo "no env exists"
-fi
-
-* To run new test server using httpd os image:
-
-sudo docker run -dit -p 8085:80 -v /developerchanges:/usr/local/apache2/htdocs --name testingenv httpd
-```
-### Moving on to the next job, which is to detect changes to master branch and download the files to its workspace which are then transferred to the production environment. This job is Downstream to the QA job and executes only after that in the pieline  
-
-![Mastercode config](/Task1t/6.png)
-
-![Mastercode config](/Task1t/7.png)
-
-![Mastercode config](/Task1t/8.png)
-
-```
-* To copy all the files to productionchanges folder linked/mounted to the docker Production environment:
-
-sudo cp -rvf * /productionchanges
-
-* To run new Production env using httpd docker OS:
-
-if sudo docker ps | grep productionenv
-then
-echo "already running"
-else
-sudo docker run -itd -p 8084:80 -v /productionchanges:/usr/local/apache2/htdocs/ --name productionenv httpd
-fi
-```
-
-### Now the nextjob is to merge the developer code to the master code. This is a very challenging step as it involves lots of conceptual knowledge to implement this.
-
-![QA config](/Task1t/9.png)
-
-![QA config](/Task1t/10.png)
-
-![QA config](/Task1t/11.png)
+## Jenkins Jobs:
+## JOB 1:
+This job will deploy the website to the main web server. For the we need to integrate our GitHub repository to this job of Jenkins.
 
 
-## To put in a nutshell !
+![job1](/snapshot/Screenshot (310).png)
 
-We assume that the developer is maintaining branches from the last checkpoint (the code already tested) so the developer creates a feature branch and commits to the changes made
-and pushes it to github maintaining two branches of the same code. 
+Under source code management copy the URL of GitHub repository in Repositories section.
 
-![Commit and Push](/Task1t/12.png)
+![job1](/snapshot/Screenshot (311).png)
 
-As soon as the jobs are done running we can view the changes through the browser to the outside world (Client/ Public facing).  
+Select the branch Master.
 
-![Output config](/Task1t/13.png)
+Now, under Build Triggers section select Poll SCM.
 
-![Output config](/Task1t/14.png)
+![job1](/snapshot/Screenshot (312).png)
 
-![Output config](/Task1t/15.png)
+Now under the Execute Shell of Buil section write the following code which will launch the httpd container after checking it's pre-existing or not.
 
-### Key Tips :
+# sudo cp -v -r -f * /wpage
 
-* We can create a public IP with ngrok for the private Jenkins IP through tunnelling to make the production page visible to the outside world :
-```
-./ngrok http 8080
-```
+# if sudo docker ps | grep myweb6
 
-![ngrok config](/Task1t/16.png)
+# then
 
-* Use of local hooks can help in faster pushing of files to the CVCS or Github
+# echo "Already launched"
 
-```
-gedit .git/hooks/<file_name>
-```
-* Saving the above created file name within __**" "**__ should be keept in mind whie using Windows Notepad
+# else
+
+# sudo docker run -d -t -i -p 8085:80 -v /wpage:/usr/local/apache2/htdocs --name myweb6 httpd
+
+# fi
+
+![job1](/snapshot/Screenshot (313).png)
+
+## JOB 2:
+This will send the code to the Test team for testing.
+
+![job2](/snapshot/Screenshot (314).png)
+
+![job2](/snapshot/Screenshot (315).png)
+
+![job2](/snapshot/Screenshot (316).png)
+
+![job2](/snapshot/Screenshot (317).png)
+
+![job2](/snapshot/Screenshot (327).png)
 
 
-### Production server updated:
-![Output config](/Task1t/.png)
+## JOB 3:
+This job will execute after the successful completion of job 2 and deploy the new code and webpages after the testing to the main web server which will publically available.
+
+![job3](/snapshot/Screenshot (318).png)
+
+![job3](/snapshot/Screenshot (319).png)
+
+![job3](/snapshot/Screenshot (320).png)
+
+![job3](/snapshot/Screenshot (326).png)
+
+![job3](/snapshot/Screenshot (321).png)
+
+![job3](/snapshot/Screenshot (322).png)
+
+![job3](/snapshot/Screenshot (307).png)
+
+thanks for reading !
+this work is done under guidance of # vimal daga sir 
