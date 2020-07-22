@@ -1,27 +1,15 @@
 # Task1 
+Problem: Create an Automated Web Deployment setup with the integration of GitHub, Docker & Jenkins.
 
-## How to setup separate Production and Testing environments by integrating Github-Jenkins-Docker.
+1.Create a git repository and create a Jenkins job which will fetch from the master branch after every update made to the branch.
+2.For the developers, create a developer branch and create a Jenkins job which will fetch from the developer branch of GitHub and launch a separate httpd container for the same.
+3.In this stage, Jenkins will approach the website running in testing environment and finally merge the dev and master branch after testing.
 
-```
-NOTE: It is assumed that you know how to install Jenkins, Docker, Git. 
-You already have a Github Repository and a fair idea on Linux OS to be able to understand this setup.
-```
-## Understanding the problem statement
+Solution:
 
-So what is our requirement ?
-Basically, we want changes made by the developer on the feature branch in the local repo to be automatically uploaded on github and simultaneously put on the testing environment. 
-If the quality is assured by QA team we want it to be deployed on the Production Environment automatically.
+1.First of all, create a git repository in GitHub that will contain all the codes and webpages for the website.
+(/Task1t/1.png)
 
-## SETUP
-
-This setup can be explained as divided into two parts:
-
-* Continuous Development ( which involves use of Git and Github ) 
-* Continuous Integration ( which involves use of the tool Jenkins )
-
-To automate the process, use of Docker containers with httpd image has been done to launch webserver environments quickly
-
-In Github, we create a webhook which allows Github to inform Jenkins if there is a difference that occurs between origin(Github) and local repo versions of the files.
 
 ![Webhook config](/Task1t/1.png)
 
