@@ -12,8 +12,11 @@ Problem: Create an Automated Web Deployment setup with the integration of GitHub
 ##Prerequisite:
 
 -Basic linux
+
 -Git and Github
+
 -Jenkins
+
 -php/html
 
 so here we start :
